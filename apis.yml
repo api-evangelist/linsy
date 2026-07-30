@@ -1,23 +1,139 @@
 aid: linsy
 name: Linsy
-description: 'Linsy is a company surfaced as a portfolio company of hongshan and added to the API Evangelist
-  network as a stub for enrichment. Sector: consumer. This profile is a lead awaiting the enrichment pipeline.'
+description: 'Linsy (LINSY HOME) is a direct-to-consumer modular furniture brand founded in 2007, selling
+  True Modular sofas, sectionals, reclining couches, modular storage cabinets, replacement covers and
+  accessories to households in the United States and other markets from U.S. warehouse fulfillment. Linsy
+  operates two Shopify storefronts — www.linsyhome.com and linsy.com — and both expose a machine-readable
+  agent surface: a published llms.txt/agents.md, a Universal Commerce Protocol (UCP) merchant profile at
+  /.well-known/ucp, an MCP endpoint for agent-driven catalog search, cart, checkout and fulfillment, and
+  OpenID Connect discovery for Shopify customer accounts. Linsy was surfaced as a portfolio company of
+  Hongshan.'
 url: https://raw.githubusercontent.com/api-evangelist/linsy/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://www.linsyhome.com/cdn/shop/files/LINSY_HOME_LOGO.png
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - hongshan
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profile
+x-tier-reason: agent-commerce-surface
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
 - Consumer
-apis: []
+- Retail
+- E-Commerce
+- Furniture
+- Home Goods
+- Direct To Consumer
+- Agentic Commerce
+- Shopify
+- MCP
+apis:
+- aid: linsy:linsy-home-ucp
+  name: LINSY HOME UCP Commerce API (MCP)
+  description: 'The Universal Commerce Protocol (UCP) agent-commerce surface for the LINSY HOME storefront
+    (www.linsyhome.com, Shopify shop linsy-home.myshopify.com). Agents discover the merchant profile at
+    /.well-known/ucp and call the MCP endpoint over JSON-RPC to search the catalog, look up products,
+    create and update carts, start and update a checkout, and complete a purchase with buyer approval.
+    Supported UCP versions are 2026-04-08 (latest stable) and 2026-01-23.'
+  humanURL: https://www.linsyhome.com/llms.txt
+  baseURL: https://www.linsyhome.com/api/ucp/mcp
+  tags:
+  - Commerce
+  - Agentic Commerce
+  - MCP
+  - UCP
+  - Catalog
+  - Checkout
+  properties:
+  - type: MCPServer
+    url: mcp/linsy-mcp.yml
+  - type: LLMsTxt
+    url: llms/linsy-llms.txt
+  - type: AgentSkill
+    url: skills/_index.yml
+- aid: linsy:linsy-official-ucp
+  name: Linsy Official Store UCP Commerce API (MCP)
+  description: 'The Universal Commerce Protocol (UCP) agent-commerce surface for the Linsy official storefront
+    (linsy.com, Shopify shop linsyofficial.myshopify.com). Same UCP shopping service and capability set as
+    the LINSY HOME store — catalog search and lookup, cart, discount, checkout, fulfillment and order —
+    exposed over an MCP endpoint, with its own Shopify customer-account OpenID Connect issuer.'
+  humanURL: https://linsy.com/llms.txt
+  baseURL: https://linsy.com/api/ucp/mcp
+  tags:
+  - Commerce
+  - Agentic Commerce
+  - MCP
+  - UCP
+  - Catalog
+  - Checkout
+  properties:
+  - type: MCPServer
+    url: mcp/linsy-mcp.yml
+  - type: LLMsTxt
+    url: llms/linsy-official-llms.txt
+common:
+- type: DomainSecurity
+  url: security/linsy-domain-security.yml
+- type: Website
+  url: https://www.linsyhome.com/
+- type: Portal
+  url: https://www.linsyhome.com/
+- type: SignUp
+  url: https://www.linsyhome.com/account/register
+- type: Login
+  url: https://www.linsyhome.com/account/login
+- type: Support
+  url: https://www.linsyhome.com/pages/user-support
+- type: Contact
+  url: https://www.linsyhome.com/pages/contact
+- type: Blog
+  url: https://www.linsyhome.com/blogs/news
+- type: TermsOfService
+  url: https://www.linsyhome.com/policies/terms-of-service
+- type: PrivacyPolicy
+  url: https://www.linsyhome.com/policies/privacy-policy
+- type: About
+  url: https://www.linsyhome.com/pages/about-us
+- type: LLMsTxt
+  url: llms/linsy-llms.txt
+- type: MCPServer
+  url: mcp/linsy-mcp.yml
+- type: WellKnown
+  url: well-known/linsy-well-known.yml
+- type: Authentication
+  url: authentication/linsy-authentication.yml
+- type: OAuthScopes
+  url: scopes/linsy-scopes.yml
+- type: Conformance
+  url: conformance/linsy-conformance.yml
+- type: Conventions
+  url: conventions/linsy-conventions.yml
+- type: Lifecycle
+  url: lifecycle/linsy-lifecycle.yml
+- type: AgentSkill
+  url: skills/_index.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
