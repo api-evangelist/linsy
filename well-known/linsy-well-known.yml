@@ -1,0 +1,50 @@
+generated: '2026-07-19'
+method: searched
+source: live probes of https://www.linsyhome.com/.well-known/* and https://linsy.com/.well-known/*
+name: Linsy well-known discovery index
+description: Probe results for standard well-known discovery paths across both Linsy storefront hosts.
+  Both stores run on Shopify, which publishes OpenID Connect discovery for customer accounts and a
+  Universal Commerce Protocol (UCP) merchant profile. Neither host publishes security.txt, an API
+  catalog, or an ai-plugin manifest.
+hosts:
+- host: www.linsyhome.com
+  paths:
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: linsy-openid-configuration.json
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: linsy-oauth-authorization-server.json
+  - path: /.well-known/ucp
+    status: 200
+    file: linsy-ucp.json
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /llms.txt
+    status: 200
+    file: ../llms/linsy-llms.txt
+  - path: /agents.md
+    status: 200
+    note: canonical agent-facing description; /llms.txt mirrors this content
+- host: linsy.com
+  paths:
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: linsy-official-openid-configuration.json
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: linsy-official-oauth-authorization-server.json
+  - path: /.well-known/ucp
+    status: 200
+    file: linsy-official-ucp.json
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /llms.txt
+    status: 200
+    file: ../llms/linsy-official-llms.txt
+  - path: /agents.md
+    status: 200

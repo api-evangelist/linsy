@@ -1,0 +1,29 @@
+generated: '2026-07-19'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.linsyhome.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep  7 04:13:06 2026 GMT
+  hsts: true
+  hsts_max_age: 7889238
+- host: linsy.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 13 16:01:02 2026 GMT
+  hsts: true
+  hsts_max_age: 7889238
+domains:
+- domain: linsyhome.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: none
+- domain: linsy.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: none

@@ -1,0 +1,62 @@
+generated: '2026-07-19'
+method: derived
+source: well-known/linsy-openid-configuration.json, well-known/linsy-ucp.json, llms/linsy-llms.txt,
+  security/linsy-domain-security.yml
+name: Linsy standards conformance
+description: Which cross-cutting standards Linsy's published surface actually conforms to, asserted only
+  from documents fetched from Linsy's own hosts. Linsy publishes no OpenAPI, no error reference and no
+  developer documentation, so REST-level conventions are not assertable.
+standards:
+- id: oauth2
+  conforms: true
+  evidence: RFC 8414 authorization server metadata served at /.well-known/oauth-authorization-server on
+    both hosts; authorization_code + refresh_token grants, client_secret_basic client auth.
+- id: oidc
+  conforms: true
+  evidence: OpenID Connect discovery document at /.well-known/openid-configuration on both hosts, with
+    RS256 id_token signing, jwks_uri, end_session_endpoint and standard claims.
+- id: pkce
+  conforms: true
+  evidence: code_challenge_methods_supported = ["S256"] in the discovery document.
+- id: ucp
+  conforms: true
+  evidence: Universal Commerce Protocol merchant profile at /.well-known/ucp declaring dev.ucp.shopping
+    service versions 2026-04-08 and 2026-01-23 with checkout, cart, discount, fulfillment, order and
+    catalog capabilities.
+- id: mcp
+  conforms: true
+  evidence: Live JSON-RPC MCP endpoint at /api/ucp/mcp on both storefronts, declared as the UCP shopping
+    transport; responds with well-formed JSON-RPC 2.0 error objects.
+- id: llmstxt
+  conforms: true
+  evidence: /llms.txt served on both hosts, mirroring /agents.md.
+- id: sitemaps
+  conforms: true
+  evidence: /sitemap.xml index with product, page, collection, blog and agentic-discovery children.
+- id: https_tls13
+  conforms: true
+  evidence: TLS 1.3 with HSTS (max-age 7889238) on www.linsyhome.com and linsy.com.
+- id: dnssec
+  conforms: false
+  evidence: No DNSKEY records for linsyhome.com or linsy.com.
+- id: caa
+  conforms: false
+  evidence: No CAA records published for either registrable domain.
+- id: dmarc
+  conforms: true
+  evidence: DMARC records present on both domains, policy p=none (monitor only).
+- id: rfc9457
+  conforms: false
+  evidence: No problem+json error format documented or observed; the MCP surface returns JSON-RPC 2.0
+    error objects instead.
+- id: rfc9116
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on both hosts.
+- id: fapi
+  conforms: false
+  evidence: Not claimed; no financial-grade profile published.
+- id: pci_dss
+  conforms: false
+  evidence: Not asserted by Linsy. Card payments are handled by the Shopify and Google Pay payment
+    handlers declared in the UCP profile; Linsy publishes no compliance or trust page of its own, so no
+    certification is claimed here.

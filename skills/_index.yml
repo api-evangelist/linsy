@@ -1,0 +1,24 @@
+generated: '2026-07-19'
+method: generated
+source: https://www.linsyhome.com/llms.txt
+name: Linsy agent skills
+description: Packaged Agent Skills for Linsy's UCP/MCP commerce surface. Grounded entirely in the tool
+  names and rules published on the store's own llms.txt/agents.md — Linsy ships no OpenAPI, so no
+  operation is asserted beyond what the store documents.
+skills:
+- name: linsy-buy-modular-sofa
+  file: linsy-buy-modular-sofa.md
+  api: linsy:linsy-home-ucp
+  description: Search the catalog, build a cart, and drive a buyer-approved checkout through the UCP MCP
+    endpoint.
+  operations:
+  - search_catalog
+  - create_cart
+  - create_checkout
+  - update_checkout
+  - complete_checkout
+provider_published_skills:
+- name: Shop skill
+  url: https://shop.app/SKILL.md
+  note: Not authored by Linsy. Linsy's llms.txt recommends the platform-wide Shopify Shop skill for
+    personal shopping agents; recorded here as a pointer, not saved as a Linsy artifact.

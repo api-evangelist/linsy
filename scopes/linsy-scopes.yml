@@ -1,0 +1,27 @@
+generated: '2026-07-19'
+method: searched
+source: https://www.linsyhome.com/.well-known/openid-configuration (scopes_supported)
+name: Linsy OAuth scopes
+description: Scopes advertised by the Shopify customer-account OpenID Connect issuers behind Linsy's two
+  storefronts. Both stores advertise the same set. Beyond the standard OIDC scopes, the issuer grants
+  full access to the customer account API and to its MCP-flavored counterpart, which is what lets an
+  agent act on an authenticated buyer's account.
+docs: https://www.linsyhome.com/.well-known/openid-configuration
+issuers:
+- https://shopify.com/authentication/55555752076
+- https://shopify.com/authentication/73791996150
+scopes:
+- name: openid
+  description: Standard OpenID Connect scope; requests an ID token identifying the customer.
+- name: email
+  description: Releases the customer's email address and email_verified claim.
+- name: 'customer-account-api:full'
+  description: Full access to the Shopify Customer Account API on behalf of the signed-in buyer —
+    orders, addresses, and profile.
+- name: 'customer-account-mcp-api:full'
+  description: Full access to the MCP-exposed Customer Account API, the authenticated counterpart of the
+    anonymous UCP commerce endpoint.
+count: 4
+notes:
+- Scopes are issued by Shopify for the shop, not defined by Linsy; Linsy publishes no scope reference
+  page of its own.

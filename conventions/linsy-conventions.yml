@@ -1,0 +1,66 @@
+generated: '2026-07-19'
+method: searched
+source: https://www.linsyhome.com/llms.txt, https://www.linsyhome.com/.well-known/ucp
+name: Linsy API conventions
+description: Cross-cutting runtime semantics for Linsy's agent-facing commerce surface, taken from the
+  published llms.txt/agents.md and the UCP merchant profile. Linsy ships no OpenAPI and no developer
+  docs, so anything not documented on those two surfaces is recorded as not published rather than
+  guessed.
+transport:
+  style: JSON-RPC 2.0 over MCP
+  endpoint: POST /api/ucp/mcp
+  content_type: application/json
+  tool_discovery: MCP tools/list
+auth:
+  style: none for anonymous catalog/cart/checkout; OpenID Connect (Shopify customer accounts) for
+    authenticated buyer context
+  agent_identity: a UCP agent profile URI is required on MCP calls; requests without one are rejected
+    with JSON-RPC error -32001 invalid_profile_url
+  see: ../authentication/linsy-authentication.yml
+idempotency:
+  supported: false
+  note: No idempotency key header or retry-safety guarantee is documented on the published agent
+    surface. Safety on checkout is instead enforced by the buyer-approval invariant.
+pagination:
+  documented: false
+  note: The read-only browsing surface exposes whole-collection JSON endpoints
+    (/collections/{handle}/products.json) and search (/search?q={query}&type=product); no page/cursor
+    parameters are documented in llms.txt.
+rate_limiting:
+  supported: true
+  scope: per IP on the MCP endpoint
+  signaling: HTTP 429
+  guidance: 'Published rule: "Respect rate limits. The MCP endpoint is rate-limited per IP. Back off on
+    429 responses."'
+  headers_documented: false
+buyer_context:
+  documented: true
+  fields:
+  - context.address_country
+  - context.currency
+  note: Pass buyer context for accurate pricing and availability.
+errors:
+  envelope: JSON-RPC 2.0 error object with code, message and data
+  observed_example: 'code -32001, message "UCP discovery failed", data.code "invalid_profile_url"'
+  rfc9457: false
+versioning:
+  style: dated protocol versions negotiated through the UCP merchant profile
+  current: '2026-04-08'
+  also_supported:
+  - '2026-01-23'
+  discovery: /.well-known/ucp
+  see: ../lifecycle/linsy-lifecycle.yml
+read_only_surface:
+  documented: true
+  endpoints:
+  - 'GET /collections/all'
+  - 'GET /products/{handle}'
+  - 'GET /products/{handle}.json'
+  - 'GET /collections/{handle}'
+  - 'GET /collections/{handle}/products.json'
+  - 'GET /search?q={query}&type=product'
+  - 'GET /sitemap.xml'
+  note: No authentication required for these.
+approval_invariant:
+  rule: Agents must not complete payment without explicit, contemporaneous buyer consent; otherwise the
+    purchase must be routed through Shop Pay via the Shop skill.

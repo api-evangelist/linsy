@@ -1,0 +1,42 @@
+generated: '2026-07-19'
+method: searched
+source: https://www.linsyhome.com/.well-known/ucp, https://www.linsyhome.com/llms.txt
+name: Linsy API lifecycle
+description: Versioning and lifecycle posture of Linsy's agent-commerce surface. Linsy does not run a
+  developer program, so there is no published deprecation policy, SLA, status page or changelog. What is
+  versioned — and versioned explicitly — is the Universal Commerce Protocol contract, negotiated by date
+  through the merchant profile.
+versioning:
+  style: dated protocol version
+  current: '2026-04-08'
+  label: latest stable
+  supported:
+  - version: '2026-04-08'
+    profile: https://linsy-home.myshopify.com/.well-known/ucp/2026-04-08
+    status: current
+  - version: '2026-01-23'
+    profile: https://linsy-home.myshopify.com/.well-known/ucp/2026-01-23
+    status: supported
+  discovery: https://www.linsyhome.com/.well-known/ucp
+  negotiation: Capability entries declare requires.protocol.min, so an agent selects a version by
+    reading the merchant profile before calling the MCP endpoint.
+deprecation_policy:
+  published: false
+  sunset_header: not documented
+  deprecation_header: not documented
+sla:
+  published: false
+status_page:
+  published: false
+  note: No Linsy-operated status page found; the underlying platform status is Shopify's.
+changelog:
+  published: false
+  note: No dated API changelog on either Linsy host. Protocol change is observable only through the
+    supported_versions map in the UCP profile.
+product_lifecycle:
+  founded: 2007
+  note: 'Product-side commitments published on the storefront rather than an API lifecycle: 3-year
+    warranty and replaceable covers, per the brand story page.'
+related:
+  conventions: ../conventions/linsy-conventions.yml
+  mcp: ../mcp/linsy-mcp.yml

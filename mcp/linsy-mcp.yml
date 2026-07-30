@@ -1,0 +1,90 @@
+generated: '2026-07-19'
+method: searched
+source: https://www.linsyhome.com/llms.txt and https://www.linsyhome.com/.well-known/ucp
+name: Linsy UCP Commerce MCP
+description: Linsy publishes a live Model Context Protocol endpoint on each of its storefronts as the
+  transport for the Universal Commerce Protocol (UCP) shopping service. Agents discover the merchant
+  profile at /.well-known/ucp, then call the MCP endpoint over JSON-RPC to search the catalog, build a
+  cart, and drive a buyer-approved checkout. This surface is provided by the Shopify platform on Linsy's
+  own hosts and origins.
+status: published
+transport: mcp
+protocol:
+  name: Universal Commerce Protocol
+  spec: https://ucp.dev/2026-04-08/specification/overview/
+  current_version: '2026-04-08'
+  supported_versions:
+  - '2026-04-08'
+  - '2026-01-23'
+  service: dev.ucp.shopping
+  schema: https://ucp.dev/2026-04-08/services/shopping/mcp.openrpc.json
+servers:
+- name: LINSY HOME
+  storefront: https://www.linsyhome.com/
+  endpoint: https://www.linsyhome.com/api/ucp/mcp
+  canonical_endpoint: https://linsy-home.myshopify.com/api/ucp/mcp
+  discovery: https://www.linsyhome.com/.well-known/ucp
+  shop_id: '55555752076'
+  method: POST
+  content_type: application/json
+  observed_status: 422
+  observed_note: 'tools/list without a UCP agent profile returns JSON-RPC error -32001
+    "UCP discovery failed" / invalid_profile_url — the endpoint is live and requires an agent profile URI'
+- name: Linsy Official Store
+  storefront: https://linsy.com/
+  endpoint: https://linsy.com/api/ucp/mcp
+  canonical_endpoint: https://linsyofficial.myshopify.com/api/ucp/mcp
+  discovery: https://linsy.com/.well-known/ucp
+  shop_id: '73791996150'
+  method: POST
+  content_type: application/json
+  observed_status: 422
+tools:
+- name: search_catalog
+  description: Find products matching the buyer's intent.
+  source: llms.txt agent flow
+- name: create_cart
+  description: Create a cart and add the desired items.
+  source: llms.txt agent flow
+- name: create_checkout
+  description: Start the purchase flow for a cart.
+  source: llms.txt agent flow
+- name: update_checkout
+  description: Set the shipping address and shipping method on a checkout.
+  source: llms.txt agent flow
+- name: complete_checkout
+  description: Finalize the purchase. The buyer must approve payment.
+  source: llms.txt agent flow
+capabilities:
+- dev.ucp.shopping.catalog.search
+- dev.ucp.shopping.catalog.lookup
+- dev.ucp.shopping.cart
+- dev.ucp.shopping.checkout
+- dev.ucp.shopping.discount
+- dev.ucp.shopping.fulfillment
+- dev.ucp.shopping.order
+- dev.shopify.catalog
+payment_handlers:
+- id: shop_pay
+  handler: dev.shopify.shop_pay
+  stores:
+  - LINSY HOME
+- id: shopify.card
+  handler: dev.shopify.card
+  card_brands:
+  - visa
+  - master
+  - american_express
+  - discover
+  - diners_club
+- id: gpay
+  handler: com.google.pay
+  merchant_name: LINSY HOME
+rules:
+- Checkout requires contemporaneous human approval; agents must not complete payment without explicit
+  buyer consent.
+- The MCP endpoint is rate limited per IP; back off on 429 responses.
+- Pass context.address_country and context.currency for accurate pricing and availability.
+related:
+  shop_skill: https://shop.app/SKILL.md
+  shopify_agent_docs: https://shopify.dev/docs/agents/catalog/storefront-catalog
