@@ -3,10 +3,10 @@ method: searched
 source: https://www.linsyhome.com/llms.txt and https://www.linsyhome.com/.well-known/ucp
 name: Linsy UCP Commerce MCP
 description: Linsy publishes a live Model Context Protocol endpoint on each of its storefronts as the
-  transport for the Universal Commerce Protocol (UCP) shopping service. Agents discover the merchant
-  profile at /.well-known/ucp, then call the MCP endpoint over JSON-RPC to search the catalog, build a
-  cart, and drive a buyer-approved checkout. This surface is provided by the Shopify platform on Linsy's
-  own hosts and origins.
+  transport for the Universal Commerce Protocol (UCP) shopping service. Agents discover the merchant profile
+  at /.well-known/ucp, then call the MCP endpoint over JSON-RPC to search the catalog, build a cart, and
+  drive a buyer-approved checkout. This surface is provided by the Shopify platform on Linsy's own hosts
+  and origins.
 status: published
 transport: mcp
 protocol:
@@ -28,8 +28,8 @@ servers:
   method: POST
   content_type: application/json
   observed_status: 422
-  observed_note: 'tools/list without a UCP agent profile returns JSON-RPC error -32001
-    "UCP discovery failed" / invalid_profile_url — the endpoint is live and requires an agent profile URI'
+  observed_note: tools/list without a UCP agent profile returns JSON-RPC error -32001 "UCP discovery failed"
+    / invalid_profile_url — the endpoint is live and requires an agent profile URI
 - name: Linsy Official Store
   storefront: https://linsy.com/
   endpoint: https://linsy.com/api/ucp/mcp
@@ -88,3 +88,11 @@ rules:
 related:
   shop_skill: https://shop.app/SKILL.md
   shopify_agent_docs: https://shopify.dev/docs/agents/catalog/storefront-catalog
+deployment:
+  mode: remote
+  endpoint: https://www.linsyhome.com/api/ucp/mcp
+  verified: probed
+  probe: live
+  tools: 13
+  checked: '2026-08-12'
+  source: catalog MCP census
