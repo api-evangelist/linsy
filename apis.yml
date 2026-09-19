@@ -80,6 +80,13 @@ apis:
   - Commerce
   - Agentic Commerce
   - MCP
+  - Universal Commerce Protocol
+  - Catalog
+  - Checkout
+  tags_raw:
+  - Commerce
+  - Agentic Commerce
+  - MCP
   - UCP
   - Catalog
   - Checkout
@@ -99,6 +106,13 @@ apis:
   humanURL: https://linsy.com/llms.txt
   baseURL: https://linsy.com/api/ucp/mcp
   tags:
+  - Commerce
+  - Agentic Commerce
+  - MCP
+  - Universal Commerce Protocol
+  - Catalog
+  - Checkout
+  tags_raw:
   - Commerce
   - Agentic Commerce
   - MCP
