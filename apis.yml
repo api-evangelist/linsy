@@ -97,6 +97,9 @@ apis:
     url: llms/linsy-llms.txt
   - type: AgentSkill
     url: skills/_index.yml
+  x-surface: platform-generated
+  x-platform: shopify
+  x-platform-surface: ucp
 - aid: linsy:linsy-official-ucp
   name: Linsy Official Store UCP Commerce API (MCP)
   description: 'The Universal Commerce Protocol (UCP) agent-commerce surface for the Linsy official storefront
@@ -124,6 +127,9 @@ apis:
     url: mcp/linsy-mcp.yml
   - type: LLMsTxt
     url: llms/linsy-official-llms.txt
+  x-surface: platform-generated
+  x-platform: shopify
+  x-platform-surface: ucp
 common:
 - type: DomainSecurity
   url: security/linsy-domain-security.yml
