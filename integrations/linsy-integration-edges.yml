@@ -1,0 +1,16 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/linsy/integrations
+- https://n8n.io/integrations/linsy/
+- https://composio.dev/toolkits/linsy
+- https://monid.ai/tools/linsy
+checked:
+- https://composio.dev/toolkits/linsy
+- https://monid.ai/tools/linsy
+- https://n8n.io/integrations/linsy/
+- https://zapier.com/apps/linsy/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
