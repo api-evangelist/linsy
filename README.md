@@ -64,15 +64,102 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Linsy (LINSY HOME) is a direct-to-consumer modular furniture brand founded in 2007, selling True Modular sofas, sectionals, reclining couches, modular storage cabinets, replacement covers and accessories from U.S. warehouse fulfillment.
+Linsy (LINSY HOME) is a direct-to-consumer modular furniture brand founded in 2007, selling True Modular sofas, sectionals, reclining couches, modular storage cabinets, replacement covers and accessories to households in the United States and other markets from U.S. warehouse fulfillment. Linsy operates two Shopify storefronts — www.linsyhome.com and linsy.com — and both expose a machine-readable agent surface: a published llms.txt/agents.md, a Universal Commerce Protocol (UCP) merchant profile at /.well-known/ucp, an MCP endpoint for agent-driven catalog search, cart, checkout and fulfillment, and OpenID Connect discovery for Shopify customer accounts. Linsy was surfaced as a portfolio company of Hongshan.
 
-Linsy has no developer program, but both of its storefronts — [www.linsyhome.com](https://www.linsyhome.com/) and [linsy.com](https://linsy.com/) — publish a real machine-readable agent surface:
+**Areas:** Company · Consumer · Retail · E-Commerce · Furniture · Home Goods · Direct to Consumer · Agentic Commerce · Shopify · MCP
 
-- **`llms.txt` / `agents.md`** — agent instructions, read-only browsing endpoints, and the buyer-approval rules.
-- **UCP merchant profile** at `/.well-known/ucp` — Universal Commerce Protocol `2026-04-08` (and `2026-01-23`), with cart, checkout, discount, fulfillment, order and catalog capabilities.
-- **MCP endpoint** at `/api/ucp/mcp` — JSON-RPC transport for `search_catalog`, `create_cart`, `create_checkout`, `update_checkout`, `complete_checkout`.
-- **OpenID Connect discovery** at `/.well-known/openid-configuration` — Shopify customer accounts, authorization code + PKCE (S256).
+## Linsy on APIs.io
 
-Artifacts in this repo: `well-known/`, `llms/`, `mcp/`, `authentication/`, `scopes/`, `conformance/`, `conventions/`, `lifecycle/`, `security/`, `skills/`.
+Everything profiled for Linsy is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/linsy/](https://apis.io/providers/linsy/)** — or go straight to one of the APIs or properties below.
 
-Backed by: hongshan
+### APIs (2)
+
+- [LINSY HOME UCP Commerce API (MCP)](https://apis.io/apis/linsy/linsy-home-ucp/) — The Universal Commerce Protocol (UCP) agent-commerce surface for the LINSY HOME storefront (www.linsyhome.com, Shopify shop linsy-home.myshopify.com).…
+- [Linsy Official Store UCP Commerce API (MCP)](https://apis.io/apis/linsy/linsy-official-ucp/) — The Universal Commerce Protocol (UCP) agent-commerce surface for the Linsy official storefront (linsy.com, Shopify shop linsyofficial.myshopify.com). Same…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [Linsy UCP Commerce MCP](https://apis.io/servers/linsy/linsy-ucp-commerce-mcp/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Linsy Authentication](https://apis.io/security/linsy/linsy-authentication/)
+- [Linsy Domain Security](https://apis.io/security/linsy/linsy-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Linsy Scopes](https://apis.io/scopes/linsy/linsy-scopes/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.linsyhome.com/)
+- [Sign up](https://www.linsyhome.com/account/register)
+- [Support](https://www.linsyhome.com/pages/user-support)
+- [Blog](https://www.linsyhome.com/blogs/news)
+- [Terms of service](https://www.linsyhome.com/policies/terms-of-service)
+- [Privacy policy](https://www.linsyhome.com/policies/privacy-policy)
+
+## API Evangelist rating
+
+**Kin Score 23.8** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 75.0 |
+| Contract quality | 0.0 |
+| Contract governance | 4.5 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 30.4 |
+| Access clarity | 34.2 |
+
+**Agent readiness 6.5** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | platform (partial credit) |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | platform (partial credit) |
+
+**Regulatory alignment 34.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/linsy/](https://apis.io/providers/linsy/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Linsy: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/linsy/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
